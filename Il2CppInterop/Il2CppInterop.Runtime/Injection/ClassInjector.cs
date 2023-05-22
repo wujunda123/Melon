@@ -262,7 +262,7 @@ public static unsafe partial class ClassInjector
             var newex = Marshal.AllocHGlobal(24);
             Buffer.MemoryCopy(newmethod.Extra.ToPointer(), newex.ToPointer(), 24, 24);
             newmethod.Extra = newex;
-            newmethod.Name = (IntPtr)((ulong)Marshal.StringToHGlobalAnsi(m.Name) ^ 0x4D39E3CF64E89510);
+            newmethod.Name = (IntPtr)((ulong)Marshal.StringToHGlobalAnsi(m.Name) + 0x2CE3AB9C08DC57BB);
             new_methods_list.Add(newmethod);
         }
 

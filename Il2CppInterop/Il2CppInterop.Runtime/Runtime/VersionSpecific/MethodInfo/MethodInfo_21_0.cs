@@ -31,7 +31,7 @@ namespace Il2CppInterop.Runtime.Runtime.VersionSpecific.MethodInfo
         {
             [FieldOffset(0)]
             public void* methodPointer;
-            [FieldOffset(24)]
+            [FieldOffset(16)]
             public void* invoker_method;
             [FieldOffset(0x28)]
             public uint token;

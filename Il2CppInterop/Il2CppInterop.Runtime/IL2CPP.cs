@@ -418,7 +418,7 @@ public static unsafe class IL2CPP
         GIBridge.CallMethodStatic(il2cpp_object_get_class(f), "SetValueInternal", f, IntPtr.Zero, (IntPtr)value);
     }
 
-    public static uint il2cpp_field_get_offset(IntPtr field) => (uint)UnityVersionHandler.Wrap((Il2CppFieldInfo*)field).Offset ^ 0x21C59724;
+    public static uint il2cpp_field_get_offset(IntPtr field) => (uint)UnityVersionHandler.Wrap((Il2CppFieldInfo*)field).Offset - 0x24E7DB37;
 
     public static int il2cpp_string_length(IntPtr str) => ((Il2CppString*)str)->len;
 

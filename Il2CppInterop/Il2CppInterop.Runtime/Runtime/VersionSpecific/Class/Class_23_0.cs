@@ -25,17 +25,17 @@ namespace Il2CppInterop.Runtime.Runtime.VersionSpecific.Class
         [StructLayout(LayoutKind.Explicit, Size = 328)]
         internal unsafe struct Il2CppClass_23_0
         {
-            [FieldOffset(128)]
+            [FieldOffset(32)]
             public Il2CppTypeStruct byval_arg;
-            [FieldOffset(40)]
+            [FieldOffset(128)]
             public Il2CppMethodInfo** methods;
-            [FieldOffset(264)]
+            [FieldOffset(252)]
             public uint instance_size;
-            [FieldOffset(290)]
+            [FieldOffset(298)]
             public ushort vtable_count;
-            [FieldOffset(302)]
+            [FieldOffset(296)]
             public ushort method_count;
-            [FieldOffset(313)]
+            [FieldOffset(318)]
             public byte valuetype;
 
             [FieldOffset(0)]
