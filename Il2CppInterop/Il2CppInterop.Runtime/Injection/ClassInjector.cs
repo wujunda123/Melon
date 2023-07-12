@@ -262,13 +262,13 @@ public static unsafe partial class ClassInjector
             var newex = Marshal.AllocHGlobal(24);
             Buffer.MemoryCopy(newmethod.Extra.ToPointer(), newex.ToPointer(), 24, 24);
             newmethod.Extra = newex;
-            newmethod.Name = (IntPtr)((ulong)Marshal.StringToHGlobalAnsi(m.Name) + 0x2CE3AB9C08DC57BB);
+            newmethod.Name = (IntPtr)((ulong)Marshal.StringToHGlobalAnsi(m.Name) ^ 0x3B7EB1577E9268BE);
             new_methods_list.Add(newmethod);
         }
 
         InjectorHelpers.Setup();
         
-        var size = klass.VtableCount * sizeof(VirtualInvokeData) + 328;
+        var size = klass.VtableCount * sizeof(VirtualInvokeData) + 312;
         var newklass = UnityVersionHandler.NewClass(klass.VtableCount);
         var list = (Il2CppMethodInfo**)Marshal.AllocHGlobal(new_methods_list.Count * sizeof(IntPtr));
         Buffer.MemoryCopy(klass.ClassPointer, newklass.ClassPointer, size, size);

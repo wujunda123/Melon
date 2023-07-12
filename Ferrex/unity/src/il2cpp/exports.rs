@@ -38,10 +38,10 @@ impl Il2CppExports {
     /// looks up and returns all methods from il2cpp
     pub fn new(lib: &NativeLibrary) -> Result<Il2CppExports, LibError> {
         Ok(Il2CppExports {
-            il2cpp_init: Some(lib.offset(0x925D10)?),
+            il2cpp_init: Some(lib.offset(0x935C50)?),
             il2cpp_thread_current: None,
-            il2cpp_runtime_invoke: Some(lib.offset(0x8D6CF0)?),
-            il2cpp_method_get_name: Some(lib.offset(0x91FC20)?),
+            il2cpp_runtime_invoke: Some(lib.offset(0x8E64C0)?),
+            il2cpp_method_get_name: Some(lib.offset(0x92FA40)?),
             il2cpp_thread_attach: None,
             il2cpp_domain_get: None,
             il2cpp_add_internal_call: None,

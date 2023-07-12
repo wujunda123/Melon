@@ -140,6 +140,9 @@ namespace MelonLoader.Utils
 
             foreach(var method in methodTable)
             {
+                if (method.Name == 0)
+                    continue;
+
                 var methodName = stringStream.GetStringByIndex(method.Name);
 
                 if(!IsNameValid(methodName))

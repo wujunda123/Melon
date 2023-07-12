@@ -22,21 +22,21 @@ namespace Il2CppInterop.Runtime.Runtime.VersionSpecific.Class
             return new NativeStructWrapper((IntPtr)ptr);
         }
 
-        [StructLayout(LayoutKind.Explicit, Size = 328)]
+        [StructLayout(LayoutKind.Explicit, Size = 312)]
         internal unsafe struct Il2CppClass_23_0
         {
-            [FieldOffset(32)]
+            [FieldOffset(160)]
             public Il2CppTypeStruct byval_arg;
-            [FieldOffset(128)]
+            [FieldOffset(64)]
             public Il2CppMethodInfo** methods;
-            [FieldOffset(252)]
+            [FieldOffset(280)]
             public uint instance_size;
-            [FieldOffset(298)]
-            public ushort vtable_count;
             [FieldOffset(296)]
+            public ushort vtable_count;
+            [FieldOffset(290)]
             public ushort method_count;
-            [FieldOffset(318)]
-            public byte valuetype;
+            [FieldOffset(310)]
+            public Bitfield2 _bitfield2;
 
             [FieldOffset(0)]
             public Il2CppImage* image;
@@ -166,6 +166,12 @@ namespace Il2CppInterop.Runtime.Runtime.VersionSpecific.Class
                 is_vtable_initialized = (1 << BIT_is_vtable_initialized),
             }
 
+            internal enum Bitfield2 : byte
+            {
+                BIT_is_valuetype = 2,
+                is_valuetype = (1 << BIT_is_valuetype),
+            }
+
         }
 
         internal class NativeStructWrapper : INativeClassStruct
@@ -173,6 +179,7 @@ namespace Il2CppInterop.Runtime.Runtime.VersionSpecific.Class
             public NativeStructWrapper(IntPtr ptr) => Pointer = ptr;
             private static int _bitfield0offset = Marshal.OffsetOf<Il2CppClass_23_0>(nameof(Il2CppClass_23_0._bitfield0)).ToInt32();
             private static int _bitfield1offset = Marshal.OffsetOf<Il2CppClass_23_0>(nameof(Il2CppClass_23_0._bitfield1)).ToInt32();
+            private static int _bitfield2offset = Marshal.OffsetOf<Il2CppClass_23_0>(nameof(Il2CppClass_23_0._bitfield2)).ToInt32();
             private Il2CppClass* _klassDummy;
             public IntPtr Pointer { get; }
             private Il2CppClass_23_0* _ => (Il2CppClass_23_0*)Pointer;
@@ -205,8 +212,8 @@ namespace Il2CppInterop.Runtime.Runtime.VersionSpecific.Class
             public ref Il2CppClass** TypeHierarchy => ref _->typeHierarchy;
             public bool ValueType
             {
-                get => _->valuetype != 0;
-                set => _->valuetype = (byte)(value ? 1 : 0);
+                get => this.CheckBit(_bitfield2offset, (int)Il2CppClass_23_0.Bitfield2.BIT_is_valuetype);
+                set => this.SetBit(_bitfield2offset, (int)Il2CppClass_23_0.Bitfield2.BIT_is_valuetype, value);
             }
             public bool Initialized
             {

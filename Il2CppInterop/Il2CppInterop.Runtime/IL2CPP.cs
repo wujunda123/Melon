@@ -375,7 +375,6 @@ public static unsafe class IL2CPP
     // implementations
     public static IntPtr il2cpp_assembly_get_image(IntPtr assembly) => GIBridge.il2cpp_assembly_get_image(assembly);
     public static IntPtr il2cpp_domain_get() => GIBridge.il2cpp_domain_get();
-    public static void il2cpp_field_static_get_value(IntPtr field, void* value) => GIBridge.il2cpp_field_static_get_value(field, value);
     public static IntPtr il2cpp_runtime_invoke(IntPtr method, IntPtr obj, void** param, ref IntPtr exc) =>
         GIBridge.il2cpp_runtime_invoke(method, obj, param, ref exc);
     public static IntPtr il2cpp_runtime_invoke_convert_args(IntPtr method, IntPtr obj, void** param,
@@ -418,7 +417,32 @@ public static unsafe class IL2CPP
         GIBridge.CallMethodStatic(il2cpp_object_get_class(f), "SetValueInternal", f, IntPtr.Zero, (IntPtr)value);
     }
 
-    public static uint il2cpp_field_get_offset(IntPtr field) => (uint)UnityVersionHandler.Wrap((Il2CppFieldInfo*)field).Offset - 0x24E7DB37;
+    public static void il2cpp_field_static_get_value(IntPtr field, void* value)
+    {
+        // MonoField f.GetValueInternal(value)
+        var f = GIBridge.WrappedObject.FromPtr(GIBridge.Reflection_GetFieldObject(field, IntPtr.Zero));
+        var result = f.CallMethod("GetValueInternal", IntPtr.Zero);
+        if (result == null)
+        {
+            *(IntPtr*)value = IntPtr.Zero;
+            return;
+        }
+
+        var ptr = result.Pointer;
+        var klass = il2cpp_object_get_class(ptr);
+        if (il2cpp_class_is_valuetype(klass))
+        {
+            var size = il2cpp_class_instance_size(klass);
+            var unboxed = il2cpp_object_unbox(ptr);
+            Buffer.MemoryCopy(unboxed.ToPointer(), value, size, size);
+        }
+        else
+        {
+            *(IntPtr*)value = ptr;
+        }
+    }
+
+    public static uint il2cpp_field_get_offset(IntPtr field) => (uint)UnityVersionHandler.Wrap((Il2CppFieldInfo*)field).Offset - 0x13712E86;
 
     public static int il2cpp_string_length(IntPtr str) => ((Il2CppString*)str)->len;
 

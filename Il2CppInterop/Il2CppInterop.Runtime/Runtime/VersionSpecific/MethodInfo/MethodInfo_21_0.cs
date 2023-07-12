@@ -22,7 +22,7 @@ namespace Il2CppInterop.Runtime.Runtime.VersionSpecific.MethodInfo
         [StructLayout(LayoutKind.Explicit, Size = 24)]
         internal unsafe struct GIExtraMethodInfo
         {
-            [FieldOffset(16)]
+            [FieldOffset(0)]
             public byte* name;
         }
 
@@ -35,11 +35,11 @@ namespace Il2CppInterop.Runtime.Runtime.VersionSpecific.MethodInfo
             public void* invoker_method;
             [FieldOffset(0x28)]
             public uint token;
-            [FieldOffset(0x30)]
+            [FieldOffset(0x2C)]
             public ushort slot;
             [FieldOffset(0x32)]
             public byte parameters_count;
-            [FieldOffset(0x40)]
+            [FieldOffset(0x38)]
             public GIExtraMethodInfo* extra_info;
 
             [FieldOffset(0)]
