@@ -51,6 +51,7 @@ fn init() -> Result<(), DynErr> {
     console::init()?;
     logger::init()?;
 
+    hooks::icalls::hook()?;
     hooks::init_hook::hook()?;
 
     console::null_handles()?;

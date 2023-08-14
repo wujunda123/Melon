@@ -30,7 +30,8 @@ pub struct Il2CppExports {
     pub il2cpp_method_get_name: Option<NativeMethod<fn(*mut Il2CppMethod) -> *const c_char>>,
     pub il2cpp_thread_attach: Option<NativeMethod<fn(*mut Il2CppDomain) -> *mut Il2CppThread>>,
     pub il2cpp_domain_get: Option<NativeMethod<fn() -> *mut Il2CppDomain>>,
-    pub il2cpp_add_internal_call: Option<NativeMethod<fn(*const c_char, *mut c_void)>>,
+    pub il2cpp_add_internal_call: Option<NativeMethod<fn(u32, *mut c_void)>>,
+    pub il2cpp_resolve_icall: Option<NativeMethod<fn(u32)>>,
     pub il2cpp_string_new: Option<NativeMethod<fn(*const c_char) -> *mut Il2CppString>>,
 }
 
@@ -38,13 +39,14 @@ impl Il2CppExports {
     /// looks up and returns all methods from il2cpp
     pub fn new(lib: &NativeLibrary) -> Result<Il2CppExports, LibError> {
         Ok(Il2CppExports {
-            il2cpp_init: Some(lib.offset(0x935C50)?),
+            il2cpp_init: Some(lib.offset(0x9C2C00)?),
             il2cpp_thread_current: None,
-            il2cpp_runtime_invoke: Some(lib.offset(0x8E64C0)?),
-            il2cpp_method_get_name: Some(lib.offset(0x92FA40)?),
+            il2cpp_runtime_invoke: Some(lib.offset(0x972C50)?),
+            il2cpp_method_get_name: Some(lib.offset(0x9BC9C0)?),
             il2cpp_thread_attach: None,
             il2cpp_domain_get: None,
-            il2cpp_add_internal_call: None,
+            il2cpp_add_internal_call: Some(lib.offset(0x9B0940)?),
+            il2cpp_resolve_icall: Some(lib.offset(0x9CE7B0)?),
             il2cpp_string_new: None
         })
     }

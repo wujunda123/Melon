@@ -442,7 +442,7 @@ public static unsafe class IL2CPP
         }
     }
 
-    public static uint il2cpp_field_get_offset(IntPtr field) => (uint)UnityVersionHandler.Wrap((Il2CppFieldInfo*)field).Offset - 0x13712E86;
+    public static uint il2cpp_field_get_offset(IntPtr field) => (uint)UnityVersionHandler.Wrap((Il2CppFieldInfo*)field).Offset & 0xFFFFFF;
 
     public static int il2cpp_string_length(IntPtr str) => ((Il2CppString*)str)->len;
 

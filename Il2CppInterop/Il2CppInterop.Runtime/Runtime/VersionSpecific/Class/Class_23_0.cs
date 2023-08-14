@@ -25,17 +25,17 @@ namespace Il2CppInterop.Runtime.Runtime.VersionSpecific.Class
         [StructLayout(LayoutKind.Explicit, Size = 312)]
         internal unsafe struct Il2CppClass_23_0
         {
-            [FieldOffset(160)]
+            [FieldOffset(192)]
             public Il2CppTypeStruct byval_arg;
-            [FieldOffset(64)]
+            [FieldOffset(72)]
             public Il2CppMethodInfo** methods;
-            [FieldOffset(280)]
+            [FieldOffset(260)]
             public uint instance_size;
-            [FieldOffset(296)]
+            [FieldOffset(298)]
             public ushort vtable_count;
-            [FieldOffset(290)]
+            [FieldOffset(294)]
             public ushort method_count;
-            [FieldOffset(310)]
+            [FieldOffset(305)]
             public Bitfield2 _bitfield2;
 
             [FieldOffset(0)]
@@ -168,7 +168,7 @@ namespace Il2CppInterop.Runtime.Runtime.VersionSpecific.Class
 
             internal enum Bitfield2 : byte
             {
-                BIT_is_valuetype = 2,
+                BIT_is_valuetype = 5,
                 is_valuetype = (1 << BIT_is_valuetype),
             }
 

@@ -63,33 +63,21 @@ impl Runtime for Il2Cpp {
     }
 
     fn get_export_ptr(&self, name: &str) -> Result<MethodPointer, RuntimeError> {
+        let exports =  self.exports.clone();
         let f = match name {
             "il2cpp_init" => 
-                self
-                .exports
-                .clone()
-                .il2cpp_init
-                .ok_or(RuntimeError::MissingFunction("il2cpp_init"))?
-                .inner,
+                exports.il2cpp_init.ok_or(RuntimeError::MissingFunction("il2cpp_init"))?.inner,
             "il2cpp_runtime_invoke" => 
-                self
-                .exports
-                .clone()
-                .il2cpp_runtime_invoke
-                .ok_or(RuntimeError::MissingFunction("il2cpp_runtime_invoke"))?
-                .inner,
-            _ => return Err(RuntimeError::ReturnedNull("get_export_ptr"))
+                exports.il2cpp_runtime_invoke.ok_or(RuntimeError::MissingFunction("il2cpp_runtime_invoke"))?.inner,
+            "il2cpp_add_internal_call" => 
+                exports.il2cpp_add_internal_call.ok_or(RuntimeError::MissingFunction("il2cpp_add_internal_call"))?.inner,
+            "il2cpp_resolve_icall" => 
+                exports.il2cpp_resolve_icall.ok_or(RuntimeError::MissingFunction("il2cpp_resolve_icall"))?.inner,
+            _ => 
+                return Err(RuntimeError::ReturnedNull("get_export_ptr"))
         };
 
         Ok(f)
-        
-        /*let function: NativeMethod<fn()> = self.game_assembly.sym(name)?;
-
-        if function.inner.is_null() {
-            return Err(RuntimeError::ReturnedNull("get_export_ptr"));
-        }
-
-        Ok(function.inner)*/
     }
 
     fn get_current_thread(&self) -> Result<UnityThread, RuntimeError> {
@@ -148,8 +136,8 @@ impl Runtime for Il2Cpp {
         })
     }
 
-    fn add_internal_call(&self, name: &str, func: MethodPointer) -> Result<(), RuntimeError> {
-        let function = &self
+    fn add_internal_call(&self, _name: &str, _func: MethodPointer) -> Result<(), RuntimeError> {
+        /*let function = &self
             .exports
             .clone()
             .il2cpp_add_internal_call
@@ -165,7 +153,7 @@ impl Runtime for Il2Cpp {
 
         let name = CString::new(name)?;
 
-        function(name.as_ptr(), func);
+        function(name.as_ptr(), func);*/
 
         Ok(())
     }

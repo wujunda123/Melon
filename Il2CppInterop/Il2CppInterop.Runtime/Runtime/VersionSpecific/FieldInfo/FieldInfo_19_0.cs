@@ -22,7 +22,7 @@ namespace Il2CppInterop.Runtime.Runtime.VersionSpecific.FieldInfo
         [StructLayout(LayoutKind.Explicit)]
         internal unsafe struct Il2CppFieldInfo_19_0
         {
-            [FieldOffset(0x18)]
+            [FieldOffset(0x1C)]
             public int offset;
 
             [FieldOffset(0)]

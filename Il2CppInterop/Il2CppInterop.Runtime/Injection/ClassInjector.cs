@@ -227,7 +227,6 @@ public static unsafe partial class ClassInjector
         }
 
         var methods_list = klass.Methods;
-        var method_count = klass.MethodCount;
 
         List<INativeMethodInfoStruct> new_methods_list = new();
         List<VirtualInvokeData> new_vtable = new();
@@ -262,7 +261,7 @@ public static unsafe partial class ClassInjector
             var newex = Marshal.AllocHGlobal(24);
             Buffer.MemoryCopy(newmethod.Extra.ToPointer(), newex.ToPointer(), 24, 24);
             newmethod.Extra = newex;
-            newmethod.Name = (IntPtr)((ulong)Marshal.StringToHGlobalAnsi(m.Name) ^ 0x3B7EB1577E9268BE);
+            newmethod.Name = (IntPtr)((ulong)Marshal.StringToHGlobalAnsi(m.Name) ^ 0x1E6E726321C22384);
             new_methods_list.Add(newmethod);
         }
 
